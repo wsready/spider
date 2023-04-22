@@ -1,16 +1,19 @@
-# This is a sample Python script.
+import json
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import requests
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def spider():
+    url = 'http://scxk.nmpa.gov.cn:81/xk/itownet/portalAction.do?method=getXkzsList'
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36'
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    }
+    response = requests.post(url=url, headers=headers)
+    dic_obj = response.json()
+    # with open('./化妆品.json', 'w', encoding='utf-8') as fp:
+    #     fp.write(response)
+    fp = open('./化妆品.json', 'w', encoding='utf-8')
+    json.dump(dic_obj, fp=fp, ensure_ascii=False)
+if __name__ == "__main__":
+    spider()
