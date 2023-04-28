@@ -14,7 +14,7 @@ def spider():
     id_list = []  # 存储企业的id
     all_data_list = []  # 存储所有的企业详情数据
     # 批量获取不同企业的id值
-    url = 'http://scxk.nmpa.gov.cn:81/xk/itownet/portalAction.do?method=getXkzsList'
+    url = 'http://scxk.nmpa.gov.cn:81/xk/itownet/allQyxx/allQyxx.jsp'
     # 参数的封装 以键值的形式封装
     for page in range(1, 50):
         page = str(page)
@@ -33,7 +33,7 @@ def spider():
             id_list.append(dic['ID'])
 
     # 获取企业详情数据
-    post_url = 'http://scxk.nmpa.gov.cn:81/xk/itownet/portalAction.do?method=getXkzsById'
+    post_url = 'http://scxk.nmpa.gov.cn:81/xk/itownet/portal/dzpz.jsp'
     for id in id_list:
         data = {
             'id': id
